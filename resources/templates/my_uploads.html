@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+    <h1>My Uploads</h1>
+
+    <p>
+        Track all the resources you have uploaded
+        and their approval status.
+    </p>
+</div>
+
+{% for resource in resources %}
+
+<div class="card">
+
+    <h2>{{ resource.title }}</h2>
+
+    <p>
+        <strong>Subject:</strong>
+        {{ resource.subject }}
+    </p>
+
+    <p>
+        <strong>Type:</strong>
+        {{ resource.resource_type }}
+    </p>
+
+    <p>
+        <strong>Semester:</strong>
+        {{ resource.semester }}
+    </p>
+
+    <p>
+        <strong>Upload Date:</strong>
+        {{ resource.upload_date }}
+    </p>
+
+    <p>
+        <strong>Status:</strong>
+
+        {% if resource.is_approved %}
+            Approved ✅
+        {% else %}
+            Pending ⏳
+        {% endif %}
+    </p>
+
+</div>
+
+{% empty %}
+
+<div class="card">
+    <p>
+        You have not uploaded any resources yet.
+    </p>
+</div>
+
+{% endfor %}
+
+{% endblock %}

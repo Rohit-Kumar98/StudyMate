@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+    <h1>Dashboard</h1>
+
+    <p>
+        Welcome, {{ request.user.username }}
+    </p>
+
+    <p>
+        Manage your resources and access study materials.
+    </p>
+</div>
+
+<div class="card">
+    <h2>Quick Actions</h2>
+
+    <p><a href="/upload/">Upload Resource</a></p>
+    <p><a href="/browse/">Browse Resources</a></p>
+    <p><a href="/my-uploads/">My Uploads</a></p>
+    <p><a href="/profile/">Profile</a></p>
+
+    {% if user.is_staff %}
+        <p>
+            <a href="/pending-resources/">
+                Pending Resources (Admin)
+            </a>
+        </p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

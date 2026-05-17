@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+    <h1>Login</h1>
+
+    <p>
+        Login using your College Registration Number
+        and password.
+    </p>
+
+    {% if error %}
+        <p style="color: red;">
+            {{ error }}
+        </p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">
+            Login
+        </button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+    <h1>Pending Resources</h1>
+
+    <p>
+        Review student uploads and approve or reject
+        resources before they become visible to others.
+    </p>
+</div>
+
+{% for resource in resources %}
+
+<div class="card">
+
+    <h2>{{ resource.title }}</h2>
+
+    <p>
+        <strong>Subject:</strong>
+        {{ resource.subject }}
+    </p>
+
+    <p>
+        <strong>Resource Type:</strong>
+        {{ resource.resource_type }}
+    </p>
+
+    <p>
+        <strong>Semester:</strong>
+        {{ resource.semester }}
+    </p>
+
+    <p>
+        <strong>Description:</strong>
+        {{ resource.description }}
+    </p>
+
+    <p>
+        <strong>Uploaded By:</strong>
+        {{ resource.uploaded_by.username }}
+    </p>
+
+    <p>
+        <strong>Upload Date:</strong>
+        {{ resource.upload_date }}
+    </p>
+
+    <br>
+
+    <a href="/approve-resource/{{ resource.id }}/">
+        <button>
+            Approve
+        </button>
+    </a>
+
+    <a href="/delete-resource/{{ resource.id }}/">
+        <button>
+            Reject / Delete
+        </button>
+    </a>
+
+</div>
+
+{% empty %}
+
+<div class="card">
+    <p>No pending resources available.</p>
+</div>
+
+{% endfor %}
+
+{% endblock %}

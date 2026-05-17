@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- FILTER SECTION -->
+
+<div class="card">
+    <h1>Browse Resources</h1>
+
+    <form method="GET" class="filter-bar">
+
+        <input
+            type="text"
+            name="subject"
+            placeholder="Subject"
+        >
+
+        <select name="resource_type">
+            <option value="">All Types</option>
+            <option value="Notes">Notes</option>
+            <option value="PYQ">PYQ</option>
+            <option value="Quiz">Quiz</option>
+            <option value="Assignment">Assignment</option>
+            <option value="Lab File">Lab File</option>
+        </select>
+
+        <select name="semester">
+            <option value="">All Semesters</option>
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Semester 3</option>
+            <option value="4">Semester 4</option>
+            <option value="5">Semester 5</option>
+            <option value="6">Semester 6</option>
+        </select>
+
+        <button type="submit">
+            Apply Filters
+        </button>
+
+    </form>
+</div>
+
+<!-- RESOURCE GRID -->
+
+<div class="resource-grid">
+
+    {% for resource in resources %}
+
+    <div class="resource-card">
+
+        <h2>
+            <a href="/resource/{{ resource.id }}/">
+                {{ resource.title }}
+            </a>
+        </h2>
+
+        <p>
+            <strong>Subject:</strong>
+            {{ resource.subject }}
+        </p>
+
+        <p>
+            <strong>Type:</strong>
+            {{ resource.resource_type }}
+        </p>
+
+        <p>
+            <strong>Semester:</strong>
+            {{ resource.semester }}
+        </p>
+
+        <p>
+            <strong>Description:</strong>
+            {{ resource.description|truncatewords:15 }}
+        </p>
+
+    </div>
+
+    {% empty %}
+
+    <div class="card">
+        <p>No matching resources found.</p>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

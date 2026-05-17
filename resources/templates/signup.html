@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+    <h1>Signup</h1>
+
+    <p>
+        Create your StudyMate account using your
+        College Registration Number.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">
+            Register
+        </button>
+    </form>
+</div>
+
+{% endblock %}

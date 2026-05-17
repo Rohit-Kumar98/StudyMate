@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- RESOURCE DETAILS CARD -->
+
+<div class="card">
+    <h1>{{ resource.title }}</h1>
+
+    <p>
+        <strong>Subject:</strong>
+        {{ resource.subject }}
+    </p>
+
+    <p>
+        <strong>Resource Type:</strong>
+        {{ resource.resource_type }}
+    </p>
+
+    <p>
+        <strong>Semester:</strong>
+        {{ resource.semester }}
+    </p>
+
+    <p>
+        <strong>Description:</strong>
+        {{ resource.description }}
+    </p>
+
+    <p>
+        <strong>Uploaded By:</strong>
+        {{ resource.uploaded_by.username }}
+    </p>
+
+    <p>
+        <strong>Upload Date:</strong>
+        {{ resource.upload_date }}
+    </p>
+
+    <br>
+
+    <a href="{{ resource.file.url }}" target="_blank">
+        <button>
+            View File
+        </button>
+    </a>
+
+    <a href="{{ resource.file.url }}" download>
+        <button>
+            Download File
+        </button>
+    </a>
+</div>
+
+<!-- COMMENT FORM CARD -->
+
+<div class="card">
+    <h2>Comments</h2>
+
+    <p>
+        Ask doubts, discuss notes, and help other students.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">
+            Add Comment
+        </button>
+    </form>
+</div>
+
+<!-- COMMENTS LIST -->
+
+{% for comment in comments %}
+
+<div class="card">
+
+    <p>
+        <strong>{{ comment.user.username }}</strong>
+    </p>
+
+    <p>
+        {{ comment.text }}
+    </p>
+
+    <small>
+        {{ comment.created_at }}
+    </small>
+
+</div>
+
+{% empty %}
+
+<div class="card">
+    <p>No comments yet.</p>
+</div>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyMate</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <a href="/">Home</a>
+
+        {% if user.is_authenticated %}
+            <a href="/dashboard/">Dashboard</a>
+            <a href="/upload/">Upload</a>
+            <a href="/browse/">Browse</a>
+            <a href="/my-uploads/">My Uploads</a>
+            <a href="/profile/">Profile</a>
+
+            {% if user.is_staff %}
+                <a href="/pending-resources/">
+                    Pending Resources
+                </a>
+            {% endif %}
+
+            <a href="/logout/">Logout</a>
+
+        {% else %}
+            <a href="/login/">Login</a>
+            <a href="/signup/">Signup</a>
+        {% endif %}
+    </nav>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer>
+        <p>StudyMate — Student Resource Sharing Platform</p>
+        <p>Ideated & Coded by - Rohit Kumar</p>
+    </footer>
+
+</body>
+</html>

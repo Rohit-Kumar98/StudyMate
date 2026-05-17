@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+    <h1>Upload Resource</h1>
+
+    <p>
+        Upload notes, PYQs, quizzes, assignments,
+        and lab files for admin approval.
+    </p>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">
+            Upload Resource
+        </button>
+    </form>
+</div>
+
+{% endblock %}
